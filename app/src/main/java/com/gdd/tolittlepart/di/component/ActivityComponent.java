@@ -3,13 +3,10 @@ package com.gdd.tolittlepart.di.component;
 import android.app.Activity;
 import android.content.Context;
 
-import com.cins.daily.di.module.ActivityModule;
-import com.cins.daily.di.scope.ContextLife;
-import com.cins.daily.di.scope.PerActivity;
-import com.cins.daily.mvp.ui.activities.NewsActivity;
-import com.cins.daily.mvp.ui.activities.NewsChannelActivity;
-import com.cins.daily.mvp.ui.activities.NewsDetailActivity;
-import com.cins.daily.mvp.ui.activities.NewsPhotoDetailActivity;
+import com.gdd.tolittlepart.MainActivity;
+import com.gdd.tolittlepart.di.module.ActivityModule;
+import com.gdd.tolittlepart.di.scope.ContextLife;
+import com.gdd.tolittlepart.di.scope.PerActivity;
 
 import dagger.Component;
 
@@ -28,13 +25,15 @@ public interface ActivityComponent {
 
     Activity getActivity();
 
-    void inject(NewsActivity newsActivity);
+    void inject(MainActivity mainActivity);
 
-    void inject(NewsDetailActivity newsDetailActivity);
-
-    void inject(NewsChannelActivity newsChannelActivity);
-
-    void inject(NewsPhotoDetailActivity newsPhotoDetailActivity);
+//    void inject(NewsActivity newsActivity);
+//
+//    void inject(NewsDetailActivity newsDetailActivity);
+//
+//    void inject(NewsChannelActivity newsChannelActivity);
+//
+//    void inject(NewsPhotoDetailActivity newsPhotoDetailActivity);
 
     //void inject(PhotoActivity photoActivity);
 

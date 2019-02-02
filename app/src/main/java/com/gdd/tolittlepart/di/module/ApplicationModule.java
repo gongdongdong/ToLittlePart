@@ -2,9 +2,9 @@ package com.gdd.tolittlepart.di.module;
 
 import android.content.Context;
 
-import com.cins.daily.App;
-import com.cins.daily.di.scope.ContextLife;
-import com.cins.daily.di.scope.PerApp;
+import com.gdd.tolittlepart.App;
+import com.gdd.tolittlepart.di.scope.ContextLife;
+import com.gdd.tolittlepart.di.scope.PerApp;
 
 import dagger.Module;
 import dagger.Provides;

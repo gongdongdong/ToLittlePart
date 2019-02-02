@@ -3,8 +3,8 @@ package com.gdd.tolittlepart.di.module;
 import android.app.Activity;
 import android.content.Context;
 
-import com.cins.daily.di.scope.ContextLife;
-import com.cins.daily.di.scope.PerActivity;
+import com.gdd.tolittlepart.di.scope.ContextLife;
+import com.gdd.tolittlepart.di.scope.PerActivity;
 
 import dagger.Module;
 import dagger.Provides;

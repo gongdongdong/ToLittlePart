@@ -3,10 +3,9 @@ package com.gdd.tolittlepart.di.component;
 import android.app.Activity;
 import android.content.Context;
 
-import com.cins.daily.di.module.FragmentModule;
-import com.cins.daily.di.scope.ContextLife;
-import com.cins.daily.di.scope.PerFragment;
-import com.cins.daily.mvp.ui.fragment.NewsListFragment;
+import com.gdd.tolittlepart.di.module.FragmentModule;
+import com.gdd.tolittlepart.di.scope.ContextLife;
+import com.gdd.tolittlepart.di.scope.PerFragment;
 
 import dagger.Component;
 
@@ -24,5 +23,4 @@ public interface FragmentComponent {
 
     Activity getActivity();
 
-    void inject(NewsListFragment newsListFragment);
 }

@@ -5,7 +5,7 @@ import javax.inject.Inject;
 public class StudentBean {
 
     @Inject
-    public StudentBean(StudentBean studentBean){
+    public StudentBean(){
 
     }
 

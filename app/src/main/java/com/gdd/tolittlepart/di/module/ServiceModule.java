@@ -3,8 +3,8 @@ package com.gdd.tolittlepart.di.module;
 import android.app.Service;
 import android.content.Context;
 
-import com.cins.daily.di.scope.ContextLife;
-import com.cins.daily.di.scope.PerService;
+import com.gdd.tolittlepart.di.scope.ContextLife;
+import com.gdd.tolittlepart.di.scope.PerService;
 
 import dagger.Module;
 import dagger.Provides;

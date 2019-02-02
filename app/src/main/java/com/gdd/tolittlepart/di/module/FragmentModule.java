@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.cins.daily.di.scope.ContextLife;
-import com.cins.daily.di.scope.PerFragment;
+import com.gdd.tolittlepart.di.scope.ContextLife;
+import com.gdd.tolittlepart.di.scope.PerFragment;
 
 import dagger.Module;
 import dagger.Provides;
