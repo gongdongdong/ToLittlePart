@@ -1,9 +1,11 @@
-package com.gdd.tolittlepart;
+package com.gdd.tolittlepart.activitys;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.gdd.tolittlepart.R;
 
 public class MainActivity extends AppCompatActivity {
 

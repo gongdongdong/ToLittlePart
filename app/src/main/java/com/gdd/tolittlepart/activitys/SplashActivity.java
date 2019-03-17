@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.gdd.tolittlepart.MainActivity;
 import com.gdd.tolittlepart.presenters.SplashPresenter;
 import com.gdd.tolittlepart.views.ISplashView;
 
