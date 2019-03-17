@@ -1,18 +1,88 @@
 package com.gdd.tolittlepart.activitys;
 
+
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.gdd.tolittlepart.R;
+import com.gdd.tolittlepart.fragment.MainPageFragment;
+import com.gdd.tolittlepart.presenters.Presenter;
+import com.gdd.tolittlepart.utils.ToastUtil;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
+    private FragmentManager fragmentManager;
+    private MainPageFragment mainPageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    }
+
+    /**********************************************************/
+    @Override
+    protected int getLayoutId(){
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected Presenter getPresenter(){
+        return null;
+    }
+
+    @Override
+    protected void init(Bundle savedInstanceState){
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        mainPageFragment = new MainPageFragment();
+
+        transaction
+                .add(R.id.fragment_main_content, mainPageFragment)
+                .show(mainPageFragment)
+                .commit();
+    }
+    /**********************************************************/
+
+    /**********************************************************/
+    private boolean doubleBackToExitPressedOnce = false;
+    @Override
+    public void onBackPressed() {
+
+        if(mainPageFragment.onBackPressed()) {
+            return;
+        }
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        ToastUtil.showToast(this, R.string.toast_msg_oncemore_exit);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+//        if(requestCode == CookChannelActivity.Request_Code_Channel && resultCode == CookChannelActivity.Result_Code_Channel_NoChanged){
+//            if(mainPageFragment != null)
+//                mainPageFragment.updateChannel();
+//        }
     }
 
     /**********************************************************/
