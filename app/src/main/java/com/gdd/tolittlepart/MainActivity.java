@@ -33,69 +33,70 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Observable.just("one", "two", "three", "four", "five")
-//                .delay(1, TimeUnit.SECONDS)
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<String>() {
-//                    @Override
-//                    public void onSubscribe(Disposable d) {
-//                        Log.e(TAG, "onSubscribe");
-//                    }
-//
-//                    @Override
-//                    public void onNext(String s) {
-//                        Log.e(TAG, "onNext : " + s);
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        Log.e(TAG, "onError");
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        Log.e(TAG, "onComplete");
-//                    }
-//                });
-//
-//        Observable.just("one", "two", "three", "four", "five").toFlowable(BackpressureStrategy.BUFFER)
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<String>() {
-//                    @Override
-//                    public void accept(String s) throws Exception {
-//                        Log.e(TAG, "FROM Observable -> Flowable " + s);
-//                    }
-//                });
-//        Flowable.just("one", "two", "three", "four", "five")
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new FlowableSubscriber<String>() {
-//                    Subscription mSub;
-//                    @Override
-//                    public void onSubscribe(Subscription s) {
-//                        Log.e(TAG, "onSubscribe2");
-//                        mSub = s;
-//                        mSub.request(1);
-//                    }
-//
-//                    @Override
-//                    public void onNext(String s) {
-//                        Log.e(TAG, "onNext2 " + s);
-//                        mSub.request(1);
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable t) {
-//                        Log.e(TAG, "onError2");
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//                        Log.e(TAG, "onComplete2");
-//                    }
-//                });
+        Observable.just("one", "two", "three", "four", "five")
+                .delay(1, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.e(TAG, "onSubscribe");
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.e(TAG, "onNext : " + s);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onComplete");
+                    }
+                });
+
+        Observable.just("one", "two", "three", "four", "five")
+                .toFlowable(BackpressureStrategy.BUFFER)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.e(TAG, "FROM Observable -> Flowable " + s);
+                    }
+                });
+        Flowable.just("one", "two", "three", "four", "five")
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new FlowableSubscriber<String>() {
+                    Subscription mSub;
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        Log.e(TAG, "onSubscribe2");
+                        mSub = s;
+                        mSub.request(1);
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.e(TAG, "onNext2 " + s);
+                        mSub.request(1);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        Log.e(TAG, "onError2");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onComplete2");
+                    }
+                });
 
 
         Flowable.create(new FlowableOnSubscribe<String>() {
