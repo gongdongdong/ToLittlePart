@@ -44,6 +44,7 @@ ext {
     convertergson = '2.0.2'
     adapterrxjava2 = '2.5.0'
     okhttp = '3.14.0'
+    butterknife = '8.8.1'//'10.1.0'
 
 }
 

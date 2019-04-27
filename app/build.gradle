@@ -51,4 +51,6 @@ dependencies {
     implementation project(':base')
     implementation project(':useraccount')
     implementation project(':useraccountapi')
+    //butterknife
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife}"
 }
