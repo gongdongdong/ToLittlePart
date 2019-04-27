@@ -1,0 +1,4 @@
+ext {
+    arouterVersion = '1.4.1'
+    arouterCompilerVersion = '1.2.2'
+}
