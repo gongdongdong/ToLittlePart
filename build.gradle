@@ -1,5 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-file 'config/myconfigs.gradle'
 
 buildscript {
     repositories {
@@ -21,6 +20,31 @@ allprojects {
         jcenter()
         
     }
+}
+
+ext {
+    //default setting
+    compileSdkVersion = 28
+    buildToolsVersion = '28.0.3'
+    minSdkVersion = 23
+    targetSdkVersion = 28
+    versionCode = 1
+    versionName = '1.0'
+
+    //inner setting
+    appcompatversion = '28.0.0'
+    recycleversion = '28.0.0'
+
+    //external setting
+    arouterversion = '1.4.1'
+    aroutercompilerversion = '1.2.2'
+    rxandroidversion = '2.1.1'
+    rxjavaversion = '2.2.8'
+    retrofitversion = '2.0.2'
+    convertergson = '2.0.2'
+    adapterrxjava2 = '2.5.0'
+    okhttp = '3.14.0'
+
 }
 
 task clean(type: Delete) {
