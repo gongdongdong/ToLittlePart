@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".views.splash.SplashActivity">
 
+    <Button
+        android:id="@+id/btn_check_arouter"
+        android:text="Check"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.constraint.ConstraintLayout>
