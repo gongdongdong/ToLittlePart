@@ -1,0 +1,6 @@
+def arouterVersion = '1.4.1'
+ext {
+//    def springBootVersion = '2.0.3.RELEASE'
+//    "$springBootVersion"
+    def arouterCompilerVersion = '1.2.2'
+}
