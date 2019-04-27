@@ -9,6 +9,11 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -33,4 +38,5 @@ dependencies {
     api "com.alibaba:arouter-api:${rootProject.ext.arouterversion}"
     api "com.jakewharton:butterknife:${rootProject.ext.butterknife}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife}"
+    annotationProcessor "com.alibaba:arouter-compiler:${rootProject.ext.aroutercompilerversion}"
 }
