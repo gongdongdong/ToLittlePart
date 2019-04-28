@@ -39,4 +39,7 @@ dependencies {
     api "com.jakewharton:butterknife:${rootProject.ext.butterknife}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife}"
     annotationProcessor "com.alibaba:arouter-compiler:${rootProject.ext.aroutercompilerversion}"
+    implementation project(':beans')
+    api "org.greenrobot:eventbus:${rootProject.ext.eventbusversion}"
+    api "com.github.bumptech.glide:glide:${rootProject.ext.glideversion}"
 }

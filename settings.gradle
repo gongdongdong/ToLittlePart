@@ -1,2 +1,1 @@
-include ':app', ':base', ':network'
-//, ':useraccount', ':useraccountapi'
+include ':app', ':base', ':network', ':beans', ':empty'

@@ -21,14 +21,5 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':beans')
-    //rx java android
-    api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxandroidversion}"
-    api "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjavaversion}"
-    //retrofit
-    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitversion}"
-    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.convertergson}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.adapterrxjava2}"
-    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }

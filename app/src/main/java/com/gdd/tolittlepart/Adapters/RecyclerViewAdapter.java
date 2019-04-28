@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gdd.beans.DatasBean;
 import com.gdd.tolittlepart.R;
-import com.gdd.tolittlepart.beans.DatasBean;
 
 import java.util.List;
 
