@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.gdd.base.component.BaseActivity;
 import com.gdd.tolittlepart.R;
 
-@Route(path = "/tolittle/views/main")
+@Route(path = "/tolittle/main")
 public class MainActivity extends BaseActivity {
     @Override
     protected int getContentViewID() {

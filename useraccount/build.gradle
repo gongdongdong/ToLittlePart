@@ -35,5 +35,5 @@ dependencies {
     implementation project(':useraccountapi')
     //arouter
     annotationProcessor "com.alibaba:arouter-compiler:${rootProject.ext.aroutercompilerversion}"
-    implementation "com.alibaba:arouter-api:${rootProject.ext.arouterversion}"
+    api project(':base')
 }

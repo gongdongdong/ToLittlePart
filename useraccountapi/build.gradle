@@ -26,6 +26,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.alibaba:arouter-api:${rootProject.ext.arouterversion}"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':base')
 }
