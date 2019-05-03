@@ -79,11 +79,12 @@ public class MainActivity extends BaseActivity {
         test();
     }
 
-    @TestAnnoTrace(value = "GDD_test", type = 1)
+//    @TestAnnoTrace(value = "GDD_test", type = 1)
     private void test() {
         Log.e(TAG, "TEST");
     }
 
+    @TestAnnoTrace(value = "GDD_test", type = 1)
     @Subscribe(threadMode = ThreadMode.MAIN)
     void getNetworkEvent(NetworkEvent events){
         Log.e(TAG, "net work return " + events.msg);

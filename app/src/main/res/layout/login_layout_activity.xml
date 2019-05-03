@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="10dp"
+    android:background="#666666"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="38sp"
+        android:hint="输入用户名"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/et_input_pwd"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入密码"
+        android:textSize="38sp"
+        android:singleLine="true"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="38sp"
+            android:text="登录"
+            android:onClick="login_action"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btn_regist"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="38sp"
+            android:layout_marginLeft="50dp"
+            android:text="注册"
+            android:onClick="regist_action"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.gdd.network;
 import android.util.Log;
 
 import com.gdd.beans.ArticleList;
+import com.gdd.beans.LoginRegistBean;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -80,4 +81,12 @@ public class RetrofitManager {
             return response;
         }
     };
+
+    public Observable<LoginRegistBean> doLogin(String username, String password) {
+        return wanService.doLogin(username, password);
+    }
+
+    public  Observable<LoginRegistBean> doRegist(String username, String password, String repwd) {
+        return wanService.doRegist(username, password, repwd);
+    }
 }

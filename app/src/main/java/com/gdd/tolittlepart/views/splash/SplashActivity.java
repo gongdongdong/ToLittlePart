@@ -50,7 +50,7 @@ public class SplashActivity extends BaseActivity {
                 e.printStackTrace();
             }
             runOnUiThread(()->{
-                ARouter.getInstance().build("/tolittle/main").navigation();
+                ARouter.getInstance().build("/tolittle/login").navigation();
                 finish();
             });
         }).start();
