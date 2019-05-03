@@ -17,7 +17,7 @@ import butterknife.BindView;
 @Route(path = "/tolittle/splash")
 public class SplashActivity extends BaseActivity {
 
-    private static final String TAG = "gdd";
+    private static final String TAG = "test";
     @BindView(R.id.iv_show_background)
     ImageView iv_show_background;
 //    @BindView(R.id.iv_show_loading)
@@ -51,6 +51,7 @@ public class SplashActivity extends BaseActivity {
             }
             runOnUiThread(()->{
                 ARouter.getInstance().build("/tolittle/main").navigation();
+                finish();
             });
         }).start();
     }

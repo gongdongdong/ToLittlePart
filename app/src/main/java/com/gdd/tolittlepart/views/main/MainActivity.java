@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.gdd.base.adapter.listview.CommonAdapter;
-import com.gdd.base.adapter.listview.ViewHolder;
+import com.gdd.tolittlepart.aop.TestAnnoTrace;
 import com.gdd.base.component.BaseActivity;
 import com.gdd.events.NetworkEvent;
 import com.gdd.tolittlepart.R;
@@ -20,14 +20,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import butterknife.BindView;
 
 @Route(path = "/tolittle/main")
 public class MainActivity extends BaseActivity {
 
+    private static final String TAG = "test";
     @BindView(R.id.fl_show_fragment)
     FrameLayout fl_show_fragment;
     @BindView(R.id.lv_test_common)
@@ -78,12 +76,17 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView(@Nullable Bundle savedInstanceState) {
+        test();
+    }
+
+    @TestAnnoTrace(value = "GDD_test", type = 1)
+    private void test() {
+        Log.e(TAG, "TEST");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     void getNetworkEvent(NetworkEvent events){
-        Toast.makeText(this, "net work return " + events.msg,
-                Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "net work return " + events.msg);
     }
 
     @Override

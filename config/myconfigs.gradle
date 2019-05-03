@@ -23,4 +23,5 @@ ext {
     butterknife = '8.8.1'//'10.1.0'
     eventbusversion = '3.1.1'
     glideversion = '3.7.0'
+    aspectjversion = '1.8.9'
 }
