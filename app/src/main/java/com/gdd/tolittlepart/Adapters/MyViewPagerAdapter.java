@@ -17,10 +17,12 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
 
     Map<String, Fragment> mFragments = new HashMap<>();
-    List<String> keywords = new LinkedList<>();
-    public MyViewPagerAdapter(FragmentManager fm, List<String> keywords) {
+    List<String> keywords;
+    Map<String, String> myIds;
+    public MyViewPagerAdapter(FragmentManager fm, List<String> keywords, Map<String, String> myIds) {
         super(fm);
         this.keywords = keywords;
+        this.myIds = myIds;
     }
 
     @Override
@@ -28,11 +30,12 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
         if(mFragments.get(keywords.get(i)) != null){
             return mFragments.get(keywords.get(i));
         }
-
+        String id = myIds.get(keywords.get(i));
         Fragment oneFragment = NewsFragment.getInstance();
         Bundle bundle = new Bundle();
         bundle.clear();
         bundle.putString("keyword", keywords.get(i));
+        bundle.putString("id", id);
         oneFragment.setArguments(bundle);
         mFragments.put(keywords.get(i), oneFragment);
         return oneFragment;

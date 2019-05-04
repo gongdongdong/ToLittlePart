@@ -1,6 +1,7 @@
 package com.gdd.tolittlepart.views.main.newsfragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.util.Log;
 import com.gdd.base.component.BaseFragment;
 import com.gdd.beans.ArticleList;
 import com.gdd.beans.DatasBean;
+import com.gdd.beans.NewsSummary;
 import com.gdd.tolittlepart.Adapters.RecyclerViewAdapter;
 import com.gdd.tolittlepart.R;
 
@@ -28,11 +30,21 @@ public class NewsFragment extends BaseFragment implements
     RecyclerView rv_view;
 
     RecyclerViewAdapter rvAdapter;
-    private List<DatasBean> showingDatas = new LinkedList<>();
+    private List<NewsSummary> showingDatas = new LinkedList<>();
     public static NewsFragment getInstance() {
         return new NewsFragment();
     }
-    private NewsPresenter<NewsView> presenter;
+    private NewsPresenter presenter;
+
+    public String keyword = "";
+    public String id = "";
+
+    @Override
+    public void setArguments(@Nullable Bundle args) {
+        super.setArguments(args);
+        keyword = args.getString("keyword", "one");
+        id = args.getString("id", "T1348647909107");
+    }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -42,7 +54,7 @@ public class NewsFragment extends BaseFragment implements
         rv_view.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         rv_view.addOnScrollListener(monScrollListener);
         srl_content.setOnRefreshListener(this);
-        presenter = new NewsPresenter();
+        presenter = new NewsPresenter(this);
         presenter.setMyView(this);
         presenter.doTheRequest();
     }
@@ -97,9 +109,16 @@ public class NewsFragment extends BaseFragment implements
     }
 
     @Override
-    public void showData(ArticleList articleList) {
-        showingDatas.addAll(articleList.getData().getDatas());
+    public void showNewsData(List<NewsSummary> stringListMap) {
+        showingDatas.addAll(stringListMap);
         rvAdapter.notifyDataSetChanged();
         srl_content.setRefreshing(false);
+    }
+
+    @Override
+    public void showData(ArticleList articleList) {
+//        showingDatas.addAll(articleList.getData().getDatas());
+//        rvAdapter.notifyDataSetChanged();
+//        srl_content.setRefreshing(false);
     }
 }

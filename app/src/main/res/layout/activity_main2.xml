@@ -51,11 +51,6 @@
                     tools:ignore="ContentDescription"/>
             </LinearLayout>
         </android.support.design.widget.AppBarLayout>
-        <!--<FrameLayout-->
-            <!--android:id="@+id/fl_show_fragment"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-        <!--</FrameLayout>-->
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_show_content"

@@ -4,9 +4,12 @@ import android.util.Log;
 
 import com.gdd.beans.ArticleList;
 import com.gdd.beans.LoginRegistBean;
+import com.gdd.beans.NewsSummary;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -26,6 +29,7 @@ public class RetrofitManager {
     private Retrofit retrofit = null;
     private OkHttpClient sOkHttpClient;
     private WanAndroidApi wanService;
+    private NewsService newsService;
 
     private RetrofitManager(){
         retrofit = new Retrofit.Builder()
@@ -35,6 +39,14 @@ public class RetrofitManager {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         wanService = retrofit.create(WanAndroidApi.class);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(ApiConstants.NETEAST_HOST)
+                .client(getOkHttpClient())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        newsService = retrofit.create(NewsService.class);
     }
 
     private OkHttpClient getOkHttpClient() {
@@ -78,6 +90,7 @@ public class RetrofitManager {
             long t2 = System.nanoTime();
             Log.e(TAG,String.format(Locale.getDefault(), "Received response for %s in %.1fms%n%s",
                     response.request().url(), (t2 - t1) / 1e6d, response.headers()));
+            int code = response.code();
             return response;
         }
     };
@@ -88,5 +101,9 @@ public class RetrofitManager {
 
     public  Observable<LoginRegistBean> doRegist(String username, String password, String repwd) {
         return wanService.doRegist(username, password, repwd);
+    }
+
+    public  Observable<Map<String, List<NewsSummary>>> getNews(String id, int count) {
+        return newsService.getNewsList(id, count * 20);
     }
 }

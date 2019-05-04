@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gdd.base.GlideFacede.ImageLoader;
 import com.gdd.beans.DatasBean;
+import com.gdd.beans.NewsSummary;
 import com.gdd.tolittlepart.R;
 
 import java.util.List;
@@ -15,8 +17,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
 
     private final int FOOT_VIEW = 1;
     private final int NORMAL_VIEW = 2;
-    private List<DatasBean> showingDatas;
-    public RecyclerViewAdapter(List<DatasBean> showingDatas){
+    private List<NewsSummary> showingDatas;
+    public RecyclerViewAdapter(List<NewsSummary> showingDatas){
         this.showingDatas = showingDatas;
     }
     @NonNull
@@ -40,13 +42,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
         else{
             if(showingDatas != null && showingDatas.size() > 0) {
                 ItemView footholder = (ItemView) holder;
-                DatasBean onedata = showingDatas.get(position);
-                footholder.tv_first.setText(onedata.getAuthor());
+                NewsSummary onedata = showingDatas.get(position);
+                ImageLoader.load(footholder.iv_show_summary.getContext(),
+                        onedata.getImgsrc(), footholder.iv_show_summary);
+                footholder.tv_first.setText(onedata.getTname());
                 footholder.tv_second.setText(onedata.getTitle());
-                if("".equals(onedata.getProjectLink()) || null == onedata.getProjectLink()){
-                    footholder.tv_third.setText(" no project link here");
+                if("".equals(onedata.getAlias()) || null == onedata.getAlias()){
+                    footholder.tv_third.setText(" no alias ");
                 }else{
-                    footholder.tv_third.setText(onedata.getProjectLink());
+                    footholder.tv_third.setText(onedata.getAlias());
                 }
             }
         }

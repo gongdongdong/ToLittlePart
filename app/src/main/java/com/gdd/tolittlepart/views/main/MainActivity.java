@@ -26,8 +26,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -95,17 +97,28 @@ public class MainActivity extends BaseActivity {
 //        lv_test_common.setAdapter(commonAdapter);
         fragmentManager = getSupportFragmentManager();
         List<String> myKeys = new LinkedList<>();
+        Map<String, String> myIds = new HashMap<>();
         myKeys.add("one");
+        myIds.put("one", "T1348647909107");
         myKeys.add("two");
+//        myIds.put("two", "T1348649580692");
         myKeys.add("three");
+//        myIds.put("three", "T1348648756099");
         myKeys.add("four");
+//        myIds.put("four", "T1348648141035");
         myKeys.add("five");
+//        myIds.put("five", "T1348649079062");
         myKeys.add("six");
+//        myIds.put("six", "T1399700447917");
         myKeys.add("senven");
+//        myIds.put("senven", "T1348648517839");
         myKeys.add("eight");
+//        myIds.put("eight", "T1348648650048");
         myKeys.add("nine");
+//        myIds.put("nine", "T1348654060988");
         myKeys.add("ten");
-        myViewPagerAdapter = new MyViewPagerAdapter(fragmentManager, myKeys);
+//        myIds.put("ten", "T1350383429665");
+        myViewPagerAdapter = new MyViewPagerAdapter(fragmentManager, myKeys, myIds);
         vp_show_content.setAdapter(myViewPagerAdapter);
         vp_show_content.setCurrentItem(0);
         mtabs.setupWithViewPager(vp_show_content);
