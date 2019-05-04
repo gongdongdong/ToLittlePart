@@ -62,7 +62,14 @@ public class LoginActivity extends BaseActivity {
         doLoginfunction();
     }
 
+    boolean mydebug = true;
     private void doLoginfunction() {
+
+        ARouter.getInstance().build("/tolittle/main").navigation();
+        LoginActivity.this.finish();
+        if(mydebug){
+            return;
+        }
         RetrofitManager.getInstance().doLogin(et_input_name.getText().toString(),
                 et_input_pwd.getText().toString())
                 .subscribeOn(Schedulers.newThread())
@@ -87,10 +94,10 @@ public class LoginActivity extends BaseActivity {
     private boolean login_params_check() {
         if(et_input_pwd.getText().toString() == null ||
                 "".equals(et_input_pwd.getText().toString()))
-            return false;
+            return true;
         if(et_input_name.getText().toString() == null ||
                 "".equals(et_input_name.getText().toString()))
-            return false;
+            return true;
         return true;
     }
 

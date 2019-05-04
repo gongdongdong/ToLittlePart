@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.gdd.base.adapter.listview.CommonAdapter;
@@ -28,8 +29,10 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = "test";
     @BindView(R.id.fl_show_fragment)
     FrameLayout fl_show_fragment;
-    @BindView(R.id.lv_test_common)
-    ListView lv_test_common;
+    @BindView(R.id.dl_dlcontent)
+    DrawerLayout dl_dlcontent;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     CommonAdapter<String> commonAdapter;
 
@@ -45,6 +48,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
+        setSupportActionBar(toolbar);
         if(newsFragment == null){
             newsFragment = NewsFragment.getInstance();
         }
