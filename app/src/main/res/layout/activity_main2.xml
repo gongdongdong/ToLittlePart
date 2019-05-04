@@ -25,18 +25,43 @@
                 android:minHeight="?attr/actionBarSize"
                 android:theme="@style/Toolbar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-        </android.support.design.widget.AppBarLayout>
-        <FrameLayout
-            android:id="@+id/fl_show_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
 
-        <!--<android.support.v4.view.ViewPager-->
-            <!--android:id="@+id/vp_show_content"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                </android.support.design.widget.TabLayout>
+
+                <ImageView
+                    android:id="@+id/add_channel_iv"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:maxHeight="?attr/actionBarSize"
+                    android:padding="5dp"
+                    android:background="@drawable/add_image_selector"
+                    android:contentDescription=""
+                    tools:ignore="ContentDescription"/>
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
+        <!--<FrameLayout-->
+            <!--android:id="@+id/fl_show_fragment"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="match_parent">-->
-        <!--</android.support.v4.view.ViewPager>-->
+        <!--</FrameLayout>-->
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_show_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
     </LinearLayout>
 
 
