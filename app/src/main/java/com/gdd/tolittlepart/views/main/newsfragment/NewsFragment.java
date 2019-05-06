@@ -6,12 +6,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 
 import com.gdd.base.component.BaseFragment;
 import com.gdd.beans.ArticleList;
 import com.gdd.beans.DatasBean;
 import com.gdd.beans.NewsSummary;
+import com.gdd.tolittlepart.Adapters.ItemDragHelperCallback;
 import com.gdd.tolittlepart.Adapters.RecyclerViewAdapter;
 import com.gdd.tolittlepart.R;
 
@@ -57,6 +59,11 @@ public class NewsFragment extends BaseFragment implements
         presenter = new NewsPresenter(this);
         presenter.setMyView(this);
         presenter.doTheRequest();
+        ItemDragHelperCallback itemDragHelperCallback = new ItemDragHelperCallback(rvAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemDragHelperCallback);
+        itemTouchHelper.attachToRecyclerView(rv_view);
+
+        rvAdapter.setItemDragHelperCallback(itemDragHelperCallback);
     }
 
     @Override
