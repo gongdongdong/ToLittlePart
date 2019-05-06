@@ -9,4 +9,5 @@ import java.util.List;
 public interface NewsView extends BaseView {
     void showNewsData(List<NewsSummary> stringListMap);
     void showData(ArticleList articleList);
+    void onError();
 }

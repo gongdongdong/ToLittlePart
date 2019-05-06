@@ -1,5 +1,6 @@
 package com.gdd.tolittlepart.Adapters;
 
+import android.support.annotation.AnimRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,6 +24,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter implements ItemDra
     private final int NORMAL_VIEW = 2;
     private List<NewsSummary> showingDatas;
     private ItemDragHelperCallback mItemDragHelperCallback;
+    private int mLastPosition = -1;
+
+    public void setShowFootView(boolean showFootView) {
+        isShowFootView = showFootView;
+    }
+
+    private boolean isShowFootView;
+
     public RecyclerViewAdapter(List<NewsSummary> showingDatas){
         this.showingDatas = showingDatas;
     }
@@ -43,6 +52,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter implements ItemDra
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof FootView){
             FootView footholder = (FootView)holder;
+            if(!isShowFootView){
+                footholder.itemView.setVisibility(View.GONE);
+            }
+            else{
+                footholder.itemView.setVisibility(View.VISIBLE);
+            }
         }
         else{
             if(showingDatas != null && showingDatas.size() > 0) {
@@ -57,10 +72,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter implements ItemDra
                 }else{
                     itemholder.tv_third.setText(onedata.getAlias());
                 }
-                Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.anim_bottom_in);
-                itemholder.itemView.startAnimation(animation);
+                setItemAppearAnimation(holder, position, R.anim.anim_bottom_in);
                 handleLongPress(itemholder);
             }
+        }
+    }
+
+    protected void setItemAppearAnimation(RecyclerView.ViewHolder holder, int position, @AnimRes int type) {
+        if (position > mLastPosition/* && !isFooterPosition(position)*/) {
+            Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), type);
+            holder.itemView.startAnimation(animation);
+            mLastPosition = position;
         }
     }
 
@@ -86,6 +108,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter implements ItemDra
         return true;
     }
 
+    @Override
+    public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        if (isShowingAnimation(holder)) {
+            holder.itemView.clearAnimation();
+        }
+    }
+
+    private boolean isShowingAnimation(RecyclerView.ViewHolder holder) {
+        return holder.itemView.getAnimation() != null && holder.itemView
+                .getAnimation().hasStarted();
+    }
+
     public void setItemDragHelperCallback(ItemDragHelperCallback itemDragHelperCallback) {
         mItemDragHelperCallback = itemDragHelperCallback;
     }
@@ -95,13 +130,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter implements ItemDra
             newsChannelViewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-//                    NewsChannelTable newsChannel = showingDatas.get(newsChannelViewHolder.getLayoutPosition());
-//                    boolean isChannelFixed = newsChannel.getNewsChannelFixed();
-//                    if (isChannelFixed) {
-//                        mItemDragHelperCallback.setLongPressEnabled(false);
-//                    } else {
-//                        mItemDragHelperCallback.setLongPressEnabled(true);
-//                    }
                     mItemDragHelperCallback.setLongPressEnabled(true);
                     return false;
                 }

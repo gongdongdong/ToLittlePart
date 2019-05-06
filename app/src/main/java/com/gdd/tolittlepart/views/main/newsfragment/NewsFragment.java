@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.gdd.base.component.BaseFragment;
 import com.gdd.beans.ArticleList;
@@ -91,7 +92,8 @@ public class NewsFragment extends BaseFragment implements
                     //发送网络请求获取更多数据
 //                    sendMoreRequest();
                     Log.e(TAG, "=========================sendMoreRequest");
-//                    rvAdapter.setIsLoadMore();
+                    rvAdapter.setShowFootView(true);
+                    rvAdapter.notifyDataSetChanged();
                     presenter.doTheRequest();
                 }
             }
@@ -127,5 +129,14 @@ public class NewsFragment extends BaseFragment implements
 //        showingDatas.addAll(articleList.getData().getDatas());
 //        rvAdapter.notifyDataSetChanged();
 //        srl_content.setRefreshing(false);
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(getContext(), "Something Wrong Occur!",
+                Toast.LENGTH_SHORT).show();
+        srl_content.setRefreshing(false);
+        rvAdapter.setShowFootView(false);
+        rvAdapter.notifyDataSetChanged();
     }
 }

@@ -17,7 +17,9 @@ import java.util.Observable;
 
 import io.reactivex.Flowable;
 import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -53,14 +55,39 @@ public class NewsPresenter extends BasePresenter<NewsView> {
                 })
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<NewsSummary>>() {
+                .subscribe(new Observer<List<NewsSummary>>() {
                     @Override
-                    public void accept(List<NewsSummary> stringListMap) throws Exception {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<NewsSummary> newsSummaries) {
                         Log.e("test", "data back");
-                        myView.showNewsData(stringListMap);
+                        myView.showNewsData(newsSummaries);
                         EventBus.getDefault().post(new NetworkEvent("gdd trigger"));
                     }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        myView.onError();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
                 });
+
+//        new Consumer<List<NewsSummary>>() {
+//            @Override
+//            public void accept(List<NewsSummary> stringListMap) throws Exception {
+//                Log.e("test", "data back");
+//                myView.showNewsData(stringListMap);
+//                EventBus.getDefault().post(new NetworkEvent("gdd trigger"));
+//            }
+//        };
+
         requestCount++;
     }
 
