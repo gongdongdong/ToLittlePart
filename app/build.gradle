@@ -50,6 +50,10 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.butterknife}"
     implementation project(':network')
     implementation project(':beans')
+
+//    implementation 'com.google.dagger:dagger:2.22.1'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
+
 }
 
 //

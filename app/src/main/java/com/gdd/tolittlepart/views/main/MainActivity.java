@@ -31,6 +31,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+//import javax.inject.Inject;
+
 import butterknife.BindView;
 
 @Route(path = "/tolittle/main")
@@ -53,6 +55,12 @@ public class MainActivity extends BaseActivity {
     CommonAdapter<String> commonAdapter;
 
     MyViewPagerAdapter myViewPagerAdapter;
+    List<String> myKeys = new LinkedList<>();
+    Map<String, String> myIds = new HashMap<>();
+//    @Inject
+//    List<String> myKeys;
+//    @Inject
+//    Map<String, String> myIds;
 
     NewsFragment newsFragment;
     FragmentManager fragmentManager;
@@ -95,9 +103,8 @@ public class MainActivity extends BaseActivity {
 //        };
 //
 //        lv_test_common.setAdapter(commonAdapter);
+//        DaggerMainComponent.builder();
         fragmentManager = getSupportFragmentManager();
-        List<String> myKeys = new LinkedList<>();
-        Map<String, String> myIds = new HashMap<>();
         myKeys.add("one");
         myIds.put("one", "T1348647909107");
         myKeys.add("two");
