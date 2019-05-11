@@ -5,6 +5,7 @@ import android.util.Log;
 import com.gdd.beans.ArticleList;
 import com.gdd.beans.LoginRegistBean;
 import com.gdd.beans.NewsSummary;
+import com.gdd.beans.ProjectListData;
 
 import java.io.IOException;
 import java.util.List;
@@ -105,5 +106,9 @@ public class RetrofitManager {
 
     public  Observable<Map<String, List<NewsSummary>>> getNews(String id, int count) {
         return newsService.getNewsList(id, count * 20);
+    }
+
+    public Observable<ProjectListData> getProjectInfo(int page, int cid) {
+        return wanService.getProjectListData(page, cid);
     }
 }

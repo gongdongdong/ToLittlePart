@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.gdd.tolittlepart.views.main.newsfragment.NewsFragment;
+import com.gdd.tolittlepart.views.main.projectfragment.ProjectFragment;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -31,14 +32,21 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
             return mFragments.get(keywords.get(i));
         }
         String id = myIds.get(keywords.get(i));
-        Fragment oneFragment = NewsFragment.getInstance();
-        Bundle bundle = new Bundle();
-        bundle.clear();
-        bundle.putString("keyword", keywords.get(i));
-        bundle.putString("id", id);
-        oneFragment.setArguments(bundle);
-        mFragments.put(keywords.get(i), oneFragment);
-        return oneFragment;
+        if("gddcust".equals(keywords.get(i))){
+            ProjectFragment oneFragment = ProjectFragment.getInstance();
+            mFragments.put(keywords.get(i), oneFragment);
+            return oneFragment;
+        }
+        else {
+            Fragment oneFragment = NewsFragment.getInstance();
+            Bundle bundle = new Bundle();
+            bundle.clear();
+            bundle.putString("keyword", keywords.get(i));
+            bundle.putString("id", id);
+            oneFragment.setArguments(bundle);
+            mFragments.put(keywords.get(i), oneFragment);
+            return oneFragment;
+        }
     }
 
     @Override
