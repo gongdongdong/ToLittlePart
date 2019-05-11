@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.amap.api.maps.MapView;
@@ -15,6 +16,10 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.gdd.base.component.BaseActivity;
 import com.gdd.maplibrary.MapviewExt;
 import com.gdd.tolittlepart.R;
+import com.gdd.tolittlepart.views.main.DI.DaggerMainComponent;
+import com.gdd.tolittlepart.views.main.DI.Student;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,6 +34,9 @@ public class MapActivity extends BaseActivity {
     @BindView(R.id.iv_show_something)
     ImageView iv_show_something;
 
+    @Inject
+    Student student;
+
     @Override
     protected int getContentViewID() {
         return R.layout.map_activity_layout;
@@ -36,6 +44,7 @@ public class MapActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        DaggerMainComponent.builder().build().inject(this);
     }
 
     @Override
@@ -47,7 +56,6 @@ public class MapActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         myMapview.onResume();
-        myMapview.setMarkerView();
     }
 
     @Override
@@ -66,15 +74,15 @@ public class MapActivity extends BaseActivity {
     public void myOnclick(View view){
         switch (view.getId()){
             case R.id.cardview_formap:
-                trytest();
                 break;
             case R.id.btn_test:
-                trytest();
+                starttest();
                 break;
         }
     }
 
-    private void trytest(){
+    private void starttest(){
+        Toast.makeText(this, student.toString(), Toast.LENGTH_SHORT).show();
         View view = LayoutInflater.from(this).inflate(R.layout.map_activity_layout, null, false);
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromView(view);
         cardview_formap.setDrawingCacheEnabled(true);
