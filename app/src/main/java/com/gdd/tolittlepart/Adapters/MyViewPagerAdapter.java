@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.gdd.tolittlepart.views.main.cardviewfragment.CardViewFragment;
 import com.gdd.tolittlepart.views.main.newsfragment.NewsFragment;
 import com.gdd.tolittlepart.views.main.projectfragment.ProjectFragment;
 
@@ -34,6 +35,11 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
         String id = myIds.get(keywords.get(i));
         if("gddcust".equals(keywords.get(i))){
             ProjectFragment oneFragment = ProjectFragment.getInstance();
+            mFragments.put(keywords.get(i), oneFragment);
+            return oneFragment;
+        }
+        else if("gddcard".equals(keywords.get(i))) {
+            CardViewFragment oneFragment = CardViewFragment.getInstance();
             mFragments.put(keywords.get(i), oneFragment);
             return oneFragment;
         }

@@ -107,8 +107,8 @@ public class MainActivity extends BaseActivity {
         fragmentManager = getSupportFragmentManager();
         myKeys.add("one");
         myIds.put("one", "T1348647909107");
-        myKeys.add("two");
-        myIds.put("two", "T1348649580692");
+//        myKeys.add("two");
+//        myIds.put("two", "T1348649580692");
 //        myKeys.add("three");
 //        myIds.put("three", "T1348648756099");
 //        myKeys.add("four");
@@ -126,6 +126,8 @@ public class MainActivity extends BaseActivity {
 //        myKeys.add("ten");
 //        myIds.put("ten", "T1350383429665");
         myKeys.add("gddcust");
+        myIds.put("eleven", "T1350383429665");
+        myKeys.add("gddcard");
         myIds.put("eleven", "T1350383429665");
         myViewPagerAdapter = new MyViewPagerAdapter(fragmentManager, myKeys, myIds);
         vp_show_content.setAdapter(myViewPagerAdapter);
@@ -172,9 +174,9 @@ public class MainActivity extends BaseActivity {
         Log.e(TAG, "TEST");
     }
 
-    @TestAnnoTrace(value = "GDD_test", type = 1)
+//    @TestAnnoTrace(value = "GDD_test", type = 1)
     @Subscribe(threadMode = ThreadMode.MAIN)
-    void getNetworkEvent(NetworkEvent events){
+    public void getNetworkEvent(NetworkEvent events){
         Log.e(TAG, "net work return " + events.msg);
     }
 

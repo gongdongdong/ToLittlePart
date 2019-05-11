@@ -105,4 +105,8 @@ public class LoginActivity extends BaseActivity {
         ARouter.getInstance().build("/tolittle/regist").navigation();
     }
 
+    public void goto_mapActivity(View view){
+        ARouter.getInstance().build("/tolittle/map").navigation();
+    }
+
 }

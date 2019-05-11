@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -43,16 +44,27 @@ public class SplashActivity extends BaseActivity {
 
         ImageLoader.load(this, "file:///android_asset/a.jpg", iv_show_background);
         iv_show_background.animate().scaleX(1.12f).scaleY(1.12f).setDuration(3000).setStartDelay(100).start();
-        new Thread(()-> {
+        jumpfunc = new Thread(()-> {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                return;
             }
             runOnUiThread(()->{
                 ARouter.getInstance().build("/tolittle/login").navigation();
                 finish();
             });
-        }).start();
+        });
+        jumpfunc.start();
     }
+
+    Thread jumpfunc = null;
+
+    public void dothejump(View view){
+        jumpfunc.interrupt();
+        ARouter.getInstance().build("/tolittle/login").navigation();
+        finish();
+    }
+
 }

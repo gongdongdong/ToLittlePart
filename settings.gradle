@@ -1,1 +1,1 @@
-include ':app', ':base', ':network', ':beans', ':empty'
+include ':app', ':base', ':network', ':beans', ':empty', ':maplibrary'
