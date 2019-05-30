@@ -16,7 +16,9 @@ import com.gdd.network.RetrofitManager;
 import com.gdd.tolittlepart.R;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -65,30 +67,57 @@ public class LoginActivity extends BaseActivity {
     boolean mydebug = true;
     private void doLoginfunction() {
 
-        ARouter.getInstance().build("/tolittle/main").navigation();
-        LoginActivity.this.finish();
-        if(mydebug){
-            return;
-        }
+//        ARouter.getInstance().build("/tolittle/main").navigation();
+//        LoginActivity.this.finish();
+//        if(mydebug){
+//            return;
+//        }
         RetrofitManager.getInstance().doLogin(et_input_name.getText().toString(),
                 et_input_pwd.getText().toString())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<LoginRegistBean>() {
-                    @Override
-                    public void accept(LoginRegistBean loginResult) throws Exception {
-                        Log.e(TAG, "DO LOGIN FUNCTION RETURN");
+                .subscribe(/*loginResult -> {
+                    Log.e(TAG, "DO LOGIN FUNCTION RETURN");
 
-                        if(loginResult.getData() != null &&
-                                loginResult.getData().getUsername() != null){
-                            ARouter.getInstance().build("/tolittle/main").navigation();
-                            LoginActivity.this.finish();
-                            return;
-                        }
-                        Toast.makeText(LoginActivity.this, loginResult.toString(),
-                                Toast.LENGTH_SHORT).show();
+                    if(loginResult.getData() != null &&
+                            loginResult.getData().getUsername() != null){
+                        ARouter.getInstance().build("/tolittle/main").navigation();
+                        LoginActivity.this.finish();
+                        return;
                     }
-                });
+                    Toast.makeText(LoginActivity.this, loginResult.toString(),
+                            Toast.LENGTH_SHORT).show();
+                }*/
+                        new Observer<LoginRegistBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(LoginRegistBean loginResult) {
+                                Log.e(TAG, "DO LOGIN FUNCTION RETURN");
+
+                                if(loginResult.getData() != null &&
+                                        loginResult.getData().getUsername() != null){
+//                                    ARouter.getInstance().build("/tolittle/main").navigation();
+//                                    LoginActivity.this.finish();
+                                    return;
+                                }
+                                Toast.makeText(LoginActivity.this, loginResult.toString(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.e(TAG, "DO LOGIN FUNCTION RETURN onError");
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
     }
 
     private boolean login_params_check() {

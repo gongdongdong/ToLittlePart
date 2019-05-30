@@ -8,12 +8,16 @@ import com.gdd.beans.NewsSummary;
 import com.gdd.beans.ProjectListData;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -63,12 +67,40 @@ public class RetrofitManager {
 //                            .addInterceptor(mRewriteCacheControlInterceptor)
 //                            .addNetworkInterceptor(mRewriteCacheControlInterceptor)
                             .addInterceptor(mLoggingInterceptor)
+                            .cookieJar(new CookieJar() {
+                                @Override
+                                public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+                                    Log.e("test", "saveFromResponse " + url);
+                                    for(Cookie cookie : cookies) {
+                                        Log.e("test", "saveFromResponse cookie : " + cookie.toString());
+                                    }
+
+                                    if("https://www.wanandroid.com/user/login".equals(url.toString())){
+                                        tempCookie = cookies;
+                                    }
+                                }
+
+                                @Override
+                                public List<Cookie> loadForRequest(HttpUrl url) {
+                                    Log.e("test", "loadForRequest " + url);
+                                    if(tempCookie != null && "https://www.wanandroid.com/user/login".equals(url.toString())){
+                                        for(Cookie cookie : tempCookie) {
+                                            Log.e("test", "loadForRequest cookie : " + cookie.toString());
+                                        }
+                                        return tempCookie;
+                                    }
+                                    return Collections.emptyList();
+                                }
+                            })
                             .build();
                 }
             }
         }
         return sOkHttpClient;
     }
+
+    List<Cookie> tempCookie = null;
+
 
     public static RetrofitManager getInstance(){
         if(instance == null){

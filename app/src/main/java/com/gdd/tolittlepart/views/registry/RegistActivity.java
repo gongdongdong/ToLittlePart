@@ -15,7 +15,9 @@ import com.gdd.network.RetrofitManager;
 import com.gdd.tolittlepart.R;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -65,7 +67,7 @@ public class RegistActivity extends BaseActivity {
                 et_regist_password.getText().toString())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<LoginRegistBean>() {
+                .subscribe(/*new Consumer<LoginRegistBean>() {
                     @Override
                     public void accept(LoginRegistBean registResult) throws Exception {
                         Log.e(TAG, "DO REGIST FUNCTION RETURN");
@@ -73,7 +75,31 @@ public class RegistActivity extends BaseActivity {
                                 Toast.LENGTH_SHORT).show();
 
                     }
-                });
+                }*/
+                        new Observer<LoginRegistBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(LoginRegistBean registResult) {
+                                Log.e(TAG, "DO REGIST FUNCTION RETURN");
+                                Toast.makeText(RegistActivity.this, registResult.toString(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.e(TAG, "DO REGIST FUNCTION RETURN onError");
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        }
+                );
     }
 
     private boolean checkoutParams() {
