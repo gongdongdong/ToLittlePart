@@ -14,6 +14,7 @@ import com.gdd.base.component.BaseActivity;
 import com.gdd.beans.LoginRegistBean;
 import com.gdd.network.RetrofitManager;
 import com.gdd.tolittlepart.R;
+import com.gdd.tolittlepart.services.MyIntentService;
 
 import butterknife.BindView;
 import io.reactivex.Observer;
@@ -66,7 +67,8 @@ public class LoginActivity extends BaseActivity {
 
     boolean mydebug = true;
     private void doLoginfunction() {
-
+        MyIntentService.startActionBaz(this, "111", "111");
+        MyIntentService.startActionFoo(this, "222", "222");
 //        ARouter.getInstance().build("/tolittle/main").navigation();
 //        LoginActivity.this.finish();
 //        if(mydebug){
